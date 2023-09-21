@@ -25,8 +25,18 @@ export class HeyLeafletMapElement extends LitElement {
     `,
   ];
 
-  #mapInstance?: L.Map;
+  /**
+   * @internal
+   */
   #containerRef: Ref<HTMLDivElement> = createRef();
+
+  /**
+   * @internal
+   */
+  #mapInstance?: L.Map;
+  get mapInstance() {
+    return this.#mapInstance;
+  }
 
   /**
    * The Leaflet map options.
@@ -34,6 +44,9 @@ export class HeyLeafletMapElement extends LitElement {
   @property()
   options?: L.MapOptions;
 
+  /**
+   * @internal
+   */
   #view: [number, number] = [0, 0];
   /**
    * The view. `[lat, lon]`
@@ -44,9 +57,12 @@ export class HeyLeafletMapElement extends LitElement {
   @property()
   set view(value: [number, number]) {
     this.#view = value;
-    this.#mapInstance?.setView(value ?? [0, 0]);
+    this.mapInstance?.setView(value ?? [0, 0]);
   }
 
+  /**
+   * @internal
+   */
   #zoom: number = 1;
   /**
    * The zoom level.
@@ -57,11 +73,14 @@ export class HeyLeafletMapElement extends LitElement {
   @property()
   set zoom(value: number) {
     this.#zoom = value;
-    this.#mapInstance?.setZoom(value ?? 1);
+    this.mapInstance?.setZoom(value ?? 1);
   }
 
   protected firstUpdated() {
     this.#createMapInstance();
+    this.dispatchEvent(
+      new CustomEvent("mapLoaded", { detail: this.mapInstance })
+    );
   }
 
   render() {
@@ -77,7 +96,7 @@ export class HeyLeafletMapElement extends LitElement {
   }
 
   #initializeProps() {
-    this.#mapInstance?.setView(this.view, this.zoom);
+    this.mapInstance?.setView(this.view, this.zoom);
   }
 }
 
