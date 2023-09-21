@@ -1,1 +1,1 @@
-export * from "./components/greeting";
+export * from "./components/map";

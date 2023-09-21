@@ -5,7 +5,10 @@
   "version": "0.0.0",
   "type": "module",
   "main": "dist/index.js",
-  "files": ["dist", "types"],
+  "files": [
+    "dist",
+    "types"
+  ],
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
@@ -24,6 +27,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
+    "leaflet": "^1.9.4",
     "lit": "^2.7.6"
   },
   "devDependencies": {
@@ -33,6 +37,7 @@
     "@storybook/blocks": "^7.4.0",
     "@storybook/web-components": "^7.4.0",
     "@storybook/web-components-vite": "^7.4.0",
+    "@types/leaflet": "^1.9.4",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
     "eslint": "^8.48.0",
