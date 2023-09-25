@@ -41,7 +41,7 @@ export class HeyLeafletMapElement extends LitElement {
   /**
    * The Leaflet map options.
    */
-  @property()
+  @property({ type: Object })
   options?: L.MapOptions;
 
   /**
@@ -54,7 +54,7 @@ export class HeyLeafletMapElement extends LitElement {
   get view() {
     return this.#view;
   }
-  @property()
+  @property({ type: Object })
   set view(value: [number, number]) {
     this.#view = value;
     this.mapInstance?.setView(value ?? [0, 0]);
