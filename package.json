@@ -1,6 +1,6 @@
 {
-  "name": "@awesome-elements/template",
-  "description": "Awesome-Elements Template",
+  "name": "@hey-web-components/leaflet",
+  "description": "A web component wrapper for leaflet.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
