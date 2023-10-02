@@ -1,13 +1,17 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { GeoJsonObject } from 'geojson';
 
 import "../components/map";
 import "../components/layer-control";
 import "../components/layer-group";
 import "../components/tile-layer";
+import "../components/geojson";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type MyArgs = {};
+type MyArgs = {
+  geojson: GeoJsonObject | GeoJsonObject[] | undefined;
+};
 
 export default {
   title: "Components/Map",
@@ -17,14 +21,13 @@ export default {
     layout: "centered",
   },
   argTypes: {
-    onContentChange: { action: "contentChange" },
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render: (_args) =>
+  render: (args) =>
     html`
       <hey-leaflet-map
-        zoom="6"
-        view="[30, 15]"
+        zoom="5"
+        view="[55, -113]"
         style="height: 500px; width: 500px;"
       >
         <hey-leaflet-layer-control>
@@ -40,12 +43,86 @@ export default {
               url-template="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             ></hey-leaflet-tile-layer>
           </hey-leaflet-layer-group>
+          <hey-leaflet-geojson active name="GeoJSON" .geojson=${args.geojson}></hey-leaflet-geojson>
         </hey-leaflet-layer-control>
       </hey-leaflet-map>
     `,
 } satisfies Meta<MyArgs>;
 
-export const Demo: StoryObj<MyArgs> = {
+export const Default: StoryObj<MyArgs> = {
   name: "Default",
-  args: {},
+  args: {
+    geojson: {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  -121.28906250000001,
+                  53.12040528310657
+                ],
+                [
+                  -113.5546875,
+                  53.12040528310657
+                ],
+                [
+                  -113.5546875,
+                  57.89149735271034
+                ],
+                [
+                  -121.28906250000001,
+                  57.89149735271034
+                ],
+                [
+                  -121.28906250000001,
+                  53.12040528310657
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                -110.390625,
+                57.136239319177434
+              ],
+              [
+                -117.42187500000001,
+                54.36775852406841
+              ],
+              [
+                -113.203125,
+                51.39920565355378
+              ],
+              [
+                -108.6328125,
+                53.12040528310657
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -113,
+              55
+            ]
+          }
+        }
+      ]
+    } as GeoJsonObject
+  },
 };
