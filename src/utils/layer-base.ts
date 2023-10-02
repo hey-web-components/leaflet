@@ -13,7 +13,8 @@ import { LayerType } from "./layer-type";
 import L from "leaflet";
 
 export abstract class HeyLeafletLayerBase<
-  TLayer extends L.Layer = L.Layer
+  TLayer extends L.Layer = L.Layer,
+  TLayerOptions extends L.LayerOptions = L.LayerOptions
 > extends LitElement {
   protected layerInstance?: TLayer;
 
@@ -54,7 +55,7 @@ export abstract class HeyLeafletLayerBase<
    * The layer options.
    */
   @property({ type: Object })
-  options?: L.LayerOptions;
+  options?: TLayerOptions;
 
   connectedCallback() {
     super.connectedCallback();

@@ -6,7 +6,7 @@ import L from "leaflet";
  * The tile layer component.
  */
 @customElement("hey-leaflet-tile-layer")
-export class HeyLeafletTileLayerElement extends HeyLeafletLayerBase<L.TileLayer> {
+export class HeyLeafletTileLayerElement extends HeyLeafletLayerBase<L.TileLayer, L.TileLayerOptions> {
   override name = "Tile Layer";
 
   /**

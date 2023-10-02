@@ -7,7 +7,7 @@ import L from "leaflet";
  * The GeoJSON layer component.
  */
 @customElement("hey-leaflet-geojson")
-export class HeyLeafletGeoJSONElement extends HeyLeafletLayerBase<L.GeoJSON> {
+export class HeyLeafletGeoJSONElement extends HeyLeafletLayerBase<L.GeoJSON, L.GeoJSONOptions> {
   override name = "GeoJSON Layer";
 
   /**
