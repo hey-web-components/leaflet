@@ -40,18 +40,18 @@ export default {
             url-template="https://www.zeldadungeon.net/maps/totk/tiles/surface/{z}/{x}_{y}.jpg"
           >
           </hey-leaflet-tile-layer>
-          <hey-leaflet-layer-group active name="Markers">
+          <hey-leaflet-layer-group name="Markers">
             <hey-leaflet-marker latlng="[55, -114]"></hey-leaflet-marker>
             <hey-leaflet-marker latlng="[56, -114]"></hey-leaflet-marker>
             <hey-leaflet-marker latlng="[57, -114]"></hey-leaflet-marker>
           </hey-leaflet-layer-group>
-          <hey-leaflet-layer-group name="Circle Markers">
+          <hey-leaflet-layer-group inactive name="Circle Markers">
             <hey-leaflet-circle-marker latlng="[55, -112]"></hey-leaflet-circle-marker>
             <hey-leaflet-circle-marker latlng="[56, -112]"></hey-leaflet-circle-marker>
             <hey-leaflet-circle-marker latlng="[57, -112]"></hey-leaflet-circle-marker>
           </hey-leaflet-layer-group>
         </hey-leaflet-layer-control>
-        <hey-leaflet-geojson active name="GeoJSON" .geojson=${args.geojson}></hey-leaflet-geojson>
+        <hey-leaflet-geojson name="GeoJSON" .geojson=${args.geojson}></hey-leaflet-geojson>
       </hey-leaflet-map>
     `,
 } satisfies Meta<MyArgs>;

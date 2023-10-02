@@ -26,16 +26,16 @@ export abstract class HeyLeafletLayerBase<
   /**
    * @internal
    */
-  #active: boolean = false;
+  #inactive: boolean = false;
   /**
-   * Whether the layer is active.
+   * Whether the layer is inactive.
    */
-  get active() {
-    return this.#active;
+  get inactive() {
+    return this.#inactive;
   }
   @property({ type: Boolean })
-  set active(value: boolean) {
-    this.#active = value;
+  set inactive(value: boolean) {
+    this.#inactive = value;
     this.#updateLayerActiveStatus();
   }
 
@@ -150,7 +150,7 @@ export abstract class HeyLeafletLayerBase<
       case LAYER_CONTROL_ELEMENT_TAG.toUpperCase():
         (
           this.containerElement as HeyLeafletLayerControlElement
-        ).updateActiveStatus(this.layerInstance, this.active);
+        ).updateActiveStatus(this.layerInstance, !this.inactive);
         break;
       // @ts-expect-error Fallthrough case in switch
       case MAP_ELEMENT_TAG.toUpperCase():
@@ -164,13 +164,13 @@ export abstract class HeyLeafletLayerBase<
           ).layerInstance;
         }
 
-        if (this.active) {
+        if (this.inactive) {
+          this.layerInstance.remove();
+        } else {
           if (!layerContainerInstance) {
             return;
           }
           this.layerInstance.addTo(layerContainerInstance);
-        } else {
-          this.layerInstance.remove();
         }
         break;
     }
