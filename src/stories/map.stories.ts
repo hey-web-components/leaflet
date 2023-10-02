@@ -8,6 +8,7 @@ import "../components/layer-group";
 import "../components/tile-layer";
 import "../components/geojson";
 import "../components/marker";
+import "../components/circle-marker";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type MyArgs = {
@@ -49,6 +50,11 @@ export default {
             <hey-leaflet-marker latlng="[55, -114]"></hey-leaflet-marker>
             <hey-leaflet-marker latlng="[56, -114]"></hey-leaflet-marker>
             <hey-leaflet-marker latlng="[57, -114]"></hey-leaflet-marker>
+          </hey-leaflet-layer-group>
+          <hey-leaflet-layer-group active name="Circle Markers">
+            <hey-leaflet-circle-marker latlng="[55, -112]"></hey-leaflet-circle-marker>
+            <hey-leaflet-circle-marker latlng="[56, -112]"></hey-leaflet-circle-marker>
+            <hey-leaflet-circle-marker latlng="[57, -112]"></hey-leaflet-circle-marker>
           </hey-leaflet-layer-group>
         </hey-leaflet-layer-control>
       </hey-leaflet-map>
