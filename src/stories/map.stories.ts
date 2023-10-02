@@ -40,11 +40,6 @@ export default {
             url-template="https://www.zeldadungeon.net/maps/totk/tiles/surface/{z}/{x}_{y}.jpg"
           >
           </hey-leaflet-tile-layer>
-          <hey-leaflet-layer-group active name="My Layer Group">
-            <hey-leaflet-tile-layer
-              url-template="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            ></hey-leaflet-tile-layer>
-          </hey-leaflet-layer-group>
           <hey-leaflet-geojson active name="GeoJSON" .geojson=${args.geojson}></hey-leaflet-geojson>
           <hey-leaflet-layer-group active name="Markers">
             <hey-leaflet-marker latlng="[55, -114]"></hey-leaflet-marker>
