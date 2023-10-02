@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import L from "leaflet";
 import { Ref, createRef, ref } from "lit/directives/ref.js";
 import leafletCSS from "../../node_modules/leaflet/dist/leaflet.css?inline";
+import markerIcon from "../../node_modules/leaflet/dist/images/marker-icon.png";
 
 /**
  * The main map component.
@@ -54,7 +55,7 @@ export class HeyLeafletMapElement extends LitElement {
   get view() {
     return this.#view;
   }
-  @property({ type: Object })
+  @property({ type: Array })
   set view(value: [number, number]) {
     this.#view = value;
     this.mapInstance?.setView(value ?? [0, 0]);
@@ -70,7 +71,7 @@ export class HeyLeafletMapElement extends LitElement {
   get zoom() {
     return this.#zoom;
   }
-  @property()
+  @property({ type: Number })
   set zoom(value: number) {
     this.#zoom = value;
     this.mapInstance?.setZoom(value ?? 1);
@@ -81,6 +82,13 @@ export class HeyLeafletMapElement extends LitElement {
     this.dispatchEvent(
       new CustomEvent("mapLoaded", { detail: this.mapInstance })
     );
+  }
+
+  constructor() {
+    super();
+    L.Marker.prototype.setIcon(L.icon({
+      iconUrl: markerIcon
+    }))
   }
 
   render() {
