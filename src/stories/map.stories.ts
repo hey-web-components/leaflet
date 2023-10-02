@@ -35,7 +35,6 @@ export default {
         <hey-leaflet-layer-control>
           <hey-leaflet-tile-layer
             name="Zelda"
-            active
             type="base-layer"
             url-template="https://www.zeldadungeon.net/maps/totk/tiles/surface/{z}/{x}_{y}.jpg"
           >
