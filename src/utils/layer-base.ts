@@ -100,15 +100,24 @@ export abstract class HeyLeafletLayerBase<
         );
         this.#updateLayerActiveStatus();
         break;
-      // @ts-expect-error Fallthrough case in switch
       case MAP_ELEMENT_TAG.toUpperCase():
         layerContainerInstance = (this.containerElement as HeyLeafletMapElement)
           .mapInstance;
-      // falls through
+        if (!layerContainerInstance) {
+          const eventHandler = () => {
+            this.#updateLayerActiveStatus();
+            this.containerElement?.removeEventListener("mapLoaded", eventHandler);
+          };
+          this.containerElement?.addEventListener("mapLoaded", eventHandler);
+          return;
+        }
+        this.#updateLayerActiveStatus();
+        break;
       case LAYER_GROUP_ELEMENT_TAG.toUpperCase():
         layerContainerInstance = (
           this.containerElement as HeyLeafletLayerGroupElement
         ).layerInstance;
+
 
         if (!layerContainerInstance) {
           return;
@@ -136,32 +145,34 @@ export abstract class HeyLeafletLayerBase<
     if (!this.containerElement || !this.layerInstance) {
       return;
     }
-    // let layerContainerInstance: L.LayerGroup | L.Map | undefined;
+    let layerContainerInstance: L.LayerGroup | L.Map | undefined;
     switch (this.containerElement?.tagName) {
       case LAYER_CONTROL_ELEMENT_TAG.toUpperCase():
         (
           this.containerElement as HeyLeafletLayerControlElement
         ).updateActiveStatus(this.layerInstance, this.active);
         break;
-      // // @ts-expect-error Fallthrough case in switch
-      // case MAP_ELEMENT_TAG.toUpperCase():
-      //   layerContainerInstance = (this.containerElement as HeyLeafletMapElement)
-      //     .mapInstance;
-      // // falls through
-      // case LAYER_GROUP_ELEMENT_TAG.toUpperCase():
-      //   layerContainerInstance = (
-      //     this.containerElement as HeyLeafletLayerGroupElement
-      //   ).layerInstance;
+      // @ts-expect-error Fallthrough case in switch
+      case MAP_ELEMENT_TAG.toUpperCase():
+        layerContainerInstance = (this.containerElement as HeyLeafletMapElement)
+          .mapInstance;
+      // falls through
+      case LAYER_GROUP_ELEMENT_TAG.toUpperCase():
+        if (!layerContainerInstance) {
+          layerContainerInstance = (
+            this.containerElement as HeyLeafletLayerGroupElement
+          ).layerInstance;
+        }
 
-      //   if (this.active) {
-      //     if (!layerContainerInstance) {
-      //       return;
-      //     }
-      //     this.layerInstance.addTo(layerContainerInstance);
-      //   } else {
-      //     this.layerInstance.remove();
-      //   }
-      //   break;
+        if (this.active) {
+          if (!layerContainerInstance) {
+            return;
+          }
+          this.layerInstance.addTo(layerContainerInstance);
+        } else {
+          this.layerInstance.remove();
+        }
+        break;
     }
   }
 
