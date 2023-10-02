@@ -7,6 +7,7 @@ import "../components/layer-control";
 import "../components/layer-group";
 import "../components/tile-layer";
 import "../components/geojson";
+import "../components/marker";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type MyArgs = {
@@ -44,6 +45,11 @@ export default {
             ></hey-leaflet-tile-layer>
           </hey-leaflet-layer-group>
           <hey-leaflet-geojson active name="GeoJSON" .geojson=${args.geojson}></hey-leaflet-geojson>
+          <hey-leaflet-layer-group active name="Markers">
+            <hey-leaflet-marker latlng="[55, -114]"></hey-leaflet-marker>
+            <hey-leaflet-marker latlng="[56, -114]"></hey-leaflet-marker>
+            <hey-leaflet-marker latlng="[57, -114]"></hey-leaflet-marker>
+          </hey-leaflet-layer-group>
         </hey-leaflet-layer-control>
       </hey-leaflet-map>
     `,
