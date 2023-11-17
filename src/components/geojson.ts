@@ -30,7 +30,7 @@ export class HeyLeafletGeoJSONElement extends HeyLeafletLayerBase<L.GeoJSON, L.G
     value?.forEach((d) => this.layerInstance?.addData(d));
   }
 
-  protected createLayerInstance() {
+  protected override createLayerInstance() {
     return L.geoJSON(this.geojson, this.options);
   }
 }

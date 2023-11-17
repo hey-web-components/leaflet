@@ -22,7 +22,7 @@ export class HeyLeafletTileLayerElement extends HeyLeafletLayerBase<L.TileLayer,
     this.layerInstance?.setUrl(value);
   }
 
-  protected createLayerInstance() {
+  protected override createLayerInstance() {
     return L.tileLayer(this.urlTemplate, this.options);
   }
 }
