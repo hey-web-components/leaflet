@@ -23,7 +23,7 @@ export class HeyLeafletMarkerElement extends HeyLeafletLayerBase<L.Marker, L.Mar
   }
 
   protected createLayerInstance() {
-    return L.marker(this.latlng, this.options);
+    return L.marker(this.latlng, this.initalOptions);
   }
 }
 

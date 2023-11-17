@@ -10,7 +10,7 @@ export class HeyLeafletLayerGroupElement extends HeyLeafletLayerBase<L.LayerGrou
   override name = "Layer Group";
 
   protected createLayerInstance() {
-    return L.layerGroup([], this.options);
+    return L.layerGroup([], this.initalOptions);
   }
 }
 

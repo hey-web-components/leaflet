@@ -23,7 +23,7 @@ export class HeyLeafletCircleMarkerElement extends HeyLeafletLayerBase<L.CircleM
   }
 
   protected createLayerInstance() {
-    return L.circleMarker(this.latlng, this.options);
+    return L.circleMarker(this.latlng, this.initalOptions);
   }
 }
 

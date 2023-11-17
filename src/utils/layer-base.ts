@@ -52,12 +52,15 @@ export abstract class HeyLeafletLayerBase<
   name: string = "Layer";
 
   /**
-   * The layer options.
+   * Layer options for the initialization.
    */
   @property({ type: Object })
-  options?: TLayerOptions;
+  initalOptions?: TLayerOptions;
 
   connectedCallback() {
+    if (!this.layerInstance) {
+      this.layerInstance = this.createLayerInstance();
+    }
     super.connectedCallback();
     this.#containerElement = this.obtainLayerContainerElement();
     this.#registerLayer();
@@ -69,10 +72,7 @@ export abstract class HeyLeafletLayerBase<
     this.#unregisterLayer();
   }
 
-  constructor() {
-    super();
-    this.layerInstance = this.createLayerInstance();
-  }
+  protected firstUpdated() {}
 
   protected obtainLayerContainerElement() {
     const parentElement = this.parentElement;
@@ -106,7 +106,10 @@ export abstract class HeyLeafletLayerBase<
         if (!layerContainerInstance) {
           const eventHandler = () => {
             this.#updateLayerActiveStatus();
-            this.containerElement?.removeEventListener("mapLoaded", eventHandler);
+            this.containerElement?.removeEventListener(
+              "mapLoaded",
+              eventHandler
+            );
           };
           this.containerElement?.addEventListener("mapLoaded", eventHandler);
           return;
@@ -117,7 +120,6 @@ export abstract class HeyLeafletLayerBase<
         layerContainerInstance = (
           this.containerElement as HeyLeafletLayerGroupElement
         ).layerInstance;
-
 
         if (!layerContainerInstance) {
           return;
