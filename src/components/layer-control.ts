@@ -30,7 +30,7 @@ export class HeyLeafletLayerControlElement extends LitElement {
    * The layer control options.
    */
   @property({ type: Object })
-  options?: L.Control.LayersOptions;
+  initalOptions?: L.Control.LayersOptions;
 
   connectedCallback() {
     super.connectedCallback();
@@ -95,7 +95,7 @@ export class HeyLeafletLayerControlElement extends LitElement {
     this.#layerControlInstance = L.control.layers(
       undefined,
       undefined,
-      this.options
+      this.initalOptions
     );
   }
 

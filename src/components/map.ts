@@ -43,7 +43,7 @@ export class HeyLeafletMapElement extends LitElement {
    * The Leaflet map options.
    */
   @property({ type: Object })
-  options?: L.MapOptions;
+  initialOptions?: L.MapOptions;
 
   /**
    * @internal
@@ -99,7 +99,7 @@ export class HeyLeafletMapElement extends LitElement {
     if (!this.#containerRef?.value) {
       return;
     }
-    this.#mapInstance = L.map(this.#containerRef.value, this.options);
+    this.#mapInstance = L.map(this.#containerRef.value, this.initialOptions);
     this.#initializeProps();
   }
 
