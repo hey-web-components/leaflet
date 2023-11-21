@@ -58,10 +58,10 @@ export abstract class HeyLeafletLayerBase<
   initalOptions?: TLayerOptions;
 
   connectedCallback() {
+    super.connectedCallback();
     if (!this.layerInstance) {
       this.layerInstance = this.createLayerInstance();
     }
-    super.connectedCallback();
     this.#containerElement = this.obtainLayerContainerElement();
     this.#registerLayer();
   }
