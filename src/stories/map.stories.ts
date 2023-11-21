@@ -9,6 +9,7 @@ import "../components/tile-layer";
 import "../components/geojson";
 import "../components/marker";
 import "../components/circle-marker";
+import { GeoJSONOptions } from "leaflet";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type MyArgs = {
@@ -50,7 +51,8 @@ export default {
             <hey-leaflet-circle-marker latlng="[57, -112]"></hey-leaflet-circle-marker>
           </hey-leaflet-layer-group>
         </hey-leaflet-layer-control>
-        <hey-leaflet-geojson name="GeoJSON" .geojson=${args.geojson}></hey-leaflet-geojson>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        <hey-leaflet-geojson name="GeoJSON" .geojson=${args.geojson} .initalOptions=${{style: ()=> ({fillColor: 'yellow'})} as GeoJSONOptions as any}></hey-leaflet-geojson>
       </hey-leaflet-map>
     `,
 } satisfies Meta<MyArgs>;

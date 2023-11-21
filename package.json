@@ -28,26 +28,28 @@
   },
   "dependencies": {
     "leaflet": "^1.9.4",
-    "lit": "^2.7.6"
+    "lit": "^3.1.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.8.4",
-    "@storybook/addon-essentials": "^7.4.0",
-    "@storybook/addon-links": "^7.4.0",
-    "@storybook/blocks": "^7.4.0",
-    "@storybook/web-components": "^7.4.0",
-    "@storybook/web-components-vite": "^7.4.0",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-mdx-gfm": "^7.5.3",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/web-components": "^7.5.3",
+    "@storybook/web-components-vite": "^7.5.3",
     "@types/leaflet": "^1.9.4",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
     "eslint": "^8.48.0",
     "eslint-plugin-lit": "^1.9.1",
+    "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-wc": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^7.4.0",
+    "storybook": "^7.5.3",
     "tiny-glob": "0.2.9",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^5.0.0"
   }
 }
